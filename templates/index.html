@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Management{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+<div class="container mt-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Birthdate</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in employee %}
+            <tr>
+                <th scope="row">{{ e.id }}</th>
+                <td>{{ e.position }}</td>
+                <td>{{ e.firstname }}</td>
+                <td>{{ e.lastname }}</td>
+                <td>{{ e.birth_date.strftime("%d.%m.%Y") }}</td>
+                <td>{{ e.street }} {{ e.house_number }}</td>
+                <td>{{ e.city }}, {{ e.zip_code }}</td>
+                <td><a href="/edit?id={{ e.id }}">edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

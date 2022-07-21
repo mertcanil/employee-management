@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Employee Management{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+<div class="container mt-3 d-flex justify-content-center align-items-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-1">
+                    <h2 class="p-2">Employee {{ do }}</h2>
+                </div>
+                <br>
+                <form action="employee-{{ do }}" method="POST">
+                    <input type="hidden" name="employee_id" value="{{ employee.id }}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Firstname*</b></span> 
+                                <input type="text" placeholder="Max" name="firstname" value="{{ employee.firstname }}" class="form-control" required> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Lastname*</b></span> 
+                                <input type="text" placeholder="Mustermann" name="lastname" value="{{ employee.lastname }}" class="form-control" required> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Job Title*</b></span> 
+                                <input type="text" placeholder="Softwareentwickler" name="position" value="{{ employee.position }}" class="form-control" required> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Birthdate*</b></span> 
+                                {% if do == "edit" %}
+                                <input type="date" placeholder="Max" name="birth_date" value="{{ employee.birth_date.strftime('%Y-%m-%d') }}" class="form-control" required> 
+                                {% else %}
+                                <input type="date" placeholder="Max" name="birth_date" value="" class="form-control" required> 
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Street*</b></span> 
+                                <input type="text" placeholder="Bahnstr." name="street" value="{{ employee.street }}" class="form-control" required> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Housenumber*</b></span> 
+                                <input type="text" placeholder="1234" name="house_number" value="{{ employee.house_number }}" class="form-control" required> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>City*</b></span> 
+                                <input type="text" placeholder="Düsseldorf" name="city" value="{{ employee.city }}" class="form-control" required> 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-3"> 
+                                <span><b>Zip Code*</b></span> 
+                                <input type="text" placeholder="40878" name="zip_code" value="{{ employee.zip_code }}" class="form-control" required> 
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="text-right text-center"> 
+                        <button class="btn btn-success m-2" input
+                            type="submit" value="submit"><b>Save</b>
+                        </button> 
+                        {% if do == "edit" %}
+                        <a href="/delete?id={{ employee.id }}" class="btn btn-danger m-2">Delete</a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

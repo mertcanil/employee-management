@@ -1,0 +1,13 @@
+venv/
+.venv/
+**/__pycache__/
+*$py.class
+*.pyc
+
+.env
+*.log
+*.sqlite3
+.vscode
+.DS_Store
+.AppleDouble
+.idea

@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  employee-management-db:
+    image: postgres:14.2
+    container_name: employee-management-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  employee-management:
+    container_name: employee-management
+    build: .
+    restart: unless-stopped
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+
+volumes:
+  postgres:
+    
